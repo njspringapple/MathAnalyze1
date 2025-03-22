@@ -1,0 +1,474 @@
+\documentclass[a4paper,12pt]{article}
+
+% 基本设置包
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{footmisc}
+\usepackage{amsmath,amssymb}
+
+% 代码高亮支持
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{framed}
+
+% 定义pandoc代码高亮环境
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+
+% 中文支持
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun} % 宋体
+\setCJKsansfont{SimHei} % 黑体
+\setCJKmonofont{FangSong} % 仿宋
+
+% 页面设置
+\geometry{
+  a4paper,
+  top=2cm,
+  bottom=1cm,
+  left=4cm,
+  right=2cm,
+  headheight=14pt
+}
+
+% 字体设置
+\setmainfont{Times New Roman}
+
+% 段落间距
+\setlength{\parskip}{8pt}
+\setlength{\parindent}{0pt}
+
+% 行距设置
+\onehalfspacing
+
+% 页眉页脚设置 - 强化版
+\pagestyle{fancy}
+\fancyhf{} % 清除所有现有的页眉页脚
+\fancyhead[C]{\fontsize{12pt}{14pt}\selectfont\rmfamily\thepage} % 页码居中显示在页眉
+\renewcommand{\headrulewidth}{0pt} % 移除页眉横线
+\renewcommand{\footrulewidth}{0pt} % 移除页脚横线
+
+% 对第一页使用相同的页眉页脚样式
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[C]{\fontsize{12pt}{14pt}\selectfont\rmfamily\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% 脚注设置
+\renewcommand{\footnoterule}{\rule{5cm}{0.4pt}\vspace{0.5em}}
+\setlength{\footnotesep}{1.5\baselineskip}
+\renewcommand{\footnotesize}{\fontsize{10pt}{12pt}\selectfont}
+
+% 其他设置
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+\begin{document}
+
+% 强制启用fancy页面样式
+\thispagestyle{fancy}
+
+
+
+
+P95 - P113
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{定义}\label{ux5b9aux4e49}
+
+数列\(S_n\)满足\(\forall n \in \mathbb{N} \quad S_n := \sum_{j=1}^n a_j\)，被称为（无穷）级数
+
+\(\sum_{j=1}^\infty a_j:= \sum_{j \in \mathbb{N}}a_j := (S_n)_{n \in \mathbb{N}}\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(a_j\)项
+\item
+  \((S_n)_{n \in \mathbb{N}}\) ：部分和
+\item
+  \(\sum_{j  = k}^\infty a_j\)：\((S_n)_{n \in \mathbb{N}}\)的余项
+\end{itemize}
+
+\textbf{级数是个特殊的数列}
+
+\paragraph{级数收敛}\label{ux7ea7ux6570ux6536ux655b}
+
+\begin{itemize}
+\tightlist
+\item
+  级数收敛当且仅当：\(lim_{n->\infty}S_n = s \in K\)，可以记作：\(\sum_{j = 1}^\infty a_j = s\)
+\item
+  同理，如果\(lim_{n->\infty}S_n = \pm\infty \in K\)
+\end{itemize}
+
+\paragraph{几何级数（Geometrische
+Reihe）}\label{ux51e0ux4f55ux7ea7ux6570geometrische-reihe}
+
+\(\forall |q| < 1\quad\sum_{j = 0}^\infty q^j = lim s_n = \frac{1}{1-q}\)，标准几何级数收敛于\(\frac{1}{1-q}\)
+
+\paragraph{调和级数（Harmonische
+Reihe）}\label{ux8c03ux548cux7ea7ux6570harmonische-reihe}
+
+\(\sum_{k=1}^\infty \frac{1}{k} = \infty\)，调和级数是发散的
+
+\paragraph{交错级数（Alternierend）}\label{ux4ea4ux9519ux7ea7ux6570alternierend}
+
+\(\sum_{j=1}^{\infty} a_j \text{ 其中 } a_j \in \mathbb{R} \text{ 称为交错级数当且仅当} \forall j \in \mathbb{N} , \text{sgn}(a_{j+1}) = -\text{sgn}(a_j) \neq 0.\)
+
+\textbf{莱布尼茨判别法}：如果交错级数
+\(\sum_{n=1}^{\infty} (-1)^{n-1}a_n\) 满足以下条件：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  对所有 \(n\)，有 \(a_n > 0\)
+\item
+  数列 \({a_n}\) 单调递减，即 \(a_{n+1} \leq a_n\)
+\item
+  \(\lim_{n \to \infty} a_n = 0\)
+\end{enumerate}
+
+那么，该交错级数\textbf{收敛}。
+
+\subsubsection{级数运算法则}\label{ux7ea7ux6570ux8fd0ux7b97ux6cd5ux5219}
+
+\paragraph{线性性}\label{ux7ebfux6027ux6027}
+
+\(\forall \lambda,\mu \in \mathbb{C} \sum_{j = 1}^\infty\quad (\lambda a_j +\mu b_j) = \lambda\sum_{j = 1}^\infty a_j + \mu\sum_{j=1}^\infty b_j\)
+
+\paragraph{单调性}\label{ux5355ux8c03ux6027}
+
+\(\forall j \in \mathbb{N}, a_j, b_j \in \mathbb{R} \land a_j \leq b_j \Rightarrow \sum_{j=1}^{\infty} a_j \leq \sum_{j=1}^{\infty} b_j.\)
+
+\paragraph{余项趋于0}\label{ux4f59ux9879ux8d8bux4e8e0}
+
+\(\lim_{n \to \infty} a_n = 0, \forall n \in \mathbb{N} \sum_{j=n+1}^{\infty} a_j \text{ konvergiert.}\)\\
+\(\text{Mit } S := \sum_{j=1}^{\infty} a_j, r_n := \sum_{j=n+1}^{\infty} a_j \text{ gilt:}\)
+
+\(\forall n \in \mathbb{N} , S = s_n + r_n\)
+
+\(\lim_{n \to \infty} r_n = 0.\)
+
+\subsubsection{收敛性判据}\label{ux6536ux655bux6027ux5224ux636e}
+
+\begin{itemize}
+\item
+  \textbf{有界判别法：部分和有界，则级数收敛}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(a_j \in \mathbb{R}^+_0, s_n := \sum_{j=1}^{n} a_j\)\\
+  \item
+    \(\lim_{n \to \infty} s_n = \sup\{s_n : n \in \mathbb{N}\}\) ，收敛
+  \item
+    \(\lim_{n \to \infty} s_n = \infty\)，发散
+  \end{itemize}
+\item
+  \textbf{比较判别法：}
+\end{itemize}
+
+\(\exists k \in \mathbb{N} , \forall j \geq k , |a_j| \leq |b_j|, (a_j, b_j \in \mathbb{C}).\)
+
+\((a) \sum_{j=1}^{\infty} |b_j| \text{ 收敛} \Rightarrow \sum_{j=1}^{\infty} a_j \text{ 收敛，且} \left|\sum_{j=k}^{\infty} a_j\right| \leq \sum_{j=k}^{\infty} |b_j|. \quad (7.78)\)
+
+\((b) \sum a_j \text{ 发散} \Rightarrow \sum |b_j| \text{ 发散}.\)
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{莱布尼茨判别法：}
+\end{itemize}
+
+\(\sum_{j=1}^{\infty} a_j \text{是交错级数 }(|a_n|)_{n \in \mathbb{N}} \text{单调递减且} \lim_{n \to \infty} a_n = 0 \text{则} \sum_{j=1}^{\infty} a_j \text{收敛且}\)：
+
+\(\forall n \in \mathbb{N} , \exists_{0 < \theta_n < 1} , r_n := \sum_{j=n+1}^{\infty} a_j = \theta_n a_{n+1}\)
+
+对于任意自然数n，存在一个介于0和1之间的数θₙ，使得第n项之后的所有项之和rₙ等于θₙ乘以aₙ₊₁。
+这个结论提供了交错级数余项的估计，表明余项的绝对值不会超过下一项的绝对值，这对于计算误差很有帮助。
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{根值判别法（Wurzelkrit）}
+\end{itemize}
+
+如果对于级数 \(\sum_{j=1}^{\infty} a_j\)，极限
+\(\lim_{j \to \infty} \sqrt[j]{|a_j|} = L\) 存在，那么：
+
+\begin{itemize}
+\tightlist
+\item
+  如果 \(L < 1\)，则级数绝对收敛
+\item
+  如果 \(L > 1\)，则级数发散
+\item
+  如果 \(L = 1\)，则判别法不能确定收敛性
+\end{itemize}
+
+\(\exists 0<q<1 \left(\sqrt[n]{|a_n|} \leq q < 1 \text{ 对几乎所有 } n \in \mathbb{N}\right)\)
+
+\(\Rightarrow \sum_{j=1}^{\infty} a_j \text{ 绝对收敛}\)
+
+\(\{n \in \mathbb{N} : \sqrt[n]{|a_n|} \geq 1\} = \infty \Rightarrow \sum_{j=1}^{\infty} a_j\)
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{比值判别法(Quot.krit)}：
+\end{itemize}
+
+\subsubsection{绝对收敛（Abs.
+Konv.）}\label{ux7eddux5bf9ux6536ux655babs.-konv.}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{定义}：\(\sum_{j=1}^{\infty} a_j \text{ 称为绝对收敛} :\Leftrightarrow \sum_{j=1}^{\infty} |a_j| \text{ 收敛}\)
+\end{itemize}
+
+\(\sum_{j=1}^{\infty} a_j\) 绝对收敛 \(\Rightarrow\)
+\(\sum_{j=1}^{\infty} a_j\) 收敛，且满足三角不等式，即
+
+\(\sum_{j=1}^{\infty} c_j \text{ 收敛} \wedge \forall j \in \mathbb{N}, |a_j| \leq c_j \Rightarrow \sum_{j=1}^{\infty} a_j \text{ 绝对收敛}\)
+
+这表述了比较判别法的一个版本：如果有一个收敛的正项级数
+\(\sum_{j=1}^{\infty} c_j\)，并且对于所有
+\(j \in \mathbb{N}\)，\(|a_j| \leq c_j\)，那么级数
+\(\sum_{j=1}^{\infty} a_j\) 绝对收敛。
+
+\subsubsection{b进制表示法的实数}\label{bux8fdbux5236ux8868ux793aux6cd5ux7684ux5b9eux6570}
+
+解释：\(\sum_{n=0}^{\infty} 2^{-(2n+1)} = \frac{2}{3}\)（练习题）。
+
+这个级数是\(\sum_{n=0}^{\infty} 2^{-(2n+1)}\)，可以理解为：\\
+\(\frac{1}{2^1} + \frac{1}{2^3} + \frac{1}{2^5} + \frac{1}{2^7} + ...\)
+
+\textbf{这是一个几何级数的变形。通过数学推导（可作为练习题），这个无穷级数的和等于\(\frac{2}{3}\)。}
+
+每个自然数n∈N恰好有2种十进制（即10进制）表示法。例如:\\
+2 = 2.0 = 1.9 = 1 + \(\sum_{n=1}^{\infty} 9 \cdot 10^{-n}\) (7.71)\\
+= 1 + 9 · \(\left(\frac{1}{1 - \frac{1}{10}} - 1\right)\)\\
+= 1 + 9 · \(\frac{1}{9}\). (7.95)
+
+\subsection{逐点收敛与一致收敛}\label{ux9010ux70b9ux6536ux655bux4e0eux4e00ux81f4ux6536ux655b}
+
+\begin{itemize}
+\item
+  \textbf{背景举例：}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    考虑在定义域\([0,1]\)上的函数序列\((f_n)\)，其中每个函数\(f_n:[0,1] \to \mathbb{R}\)的定义为：\(f_n(x) = x^n\)
+  \item
+    n趋近于无穷时候，观察随着n的增加，函数\(f_n(x)\)
+    在整个定义域\([0,1]\)内，逐渐趋近于0，表达为：
+    \(0 \leq x \leq 1 \quad lim_{n \to \infty}f_n(x) = lim_{n \to \infty}x^n = 0\)
+  \item
+    \textbf{因此，极限函数 \(f\) 可以定义 为：} \[f(x) = \begin{cases} 
+      0 & \text{if } 0 \leq x < 1 \\
+      1 & \text{if } x = 1
+      \end{cases}\]
+  \item
+    \textbf{简单解释}：逐点收敛意味着在定义域内的每一个固定点上，随着~n增大，\(f_n\)\hspace{0pt}~的值逐渐接近~\(f\)~的值。但这种接近可能\textbf{在不同点上的速度非常不同}
+  \end{itemize}
+\item
+  \textbf{定义：}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{逐点收敛：} 函数序列\((f_n)\)逐点收敛于\$
+    \(f: M \to \mathbb{K}\) 当且仅当
+    \(lim_{n \to \infty}f_n(z) = f(z)\)，也可以写为当且仅当： \[
+      \forall z \in M\quad\forall \epsilon \in \mathbb{R}^+\quad\exists N \in \mathbb{N}\quad\forall n > N\quad|f_n(z) - f(z)| < \epsilon
+      \]
+  \item
+    \textbf{一致收敛：}
+    函数序列\((f_n)\)一致（\textbf{gleichmäßig}）收敛于\(f: M \to \mathbb{K}\)
+    当且仅当： \[
+      \forall \epsilon \in \mathbb{R}^+\quad\exists N \in \mathbb{N}\quad\forall n > N\quad\forall z \in M\quad|f_n(z) - f(z)| < \epsilon
+      \]
+  \item
+    \textbf{简单解释}：一致收敛意味着整个定义域内所有点上，函数序列~\(f_n\)\hspace{0pt}~同时且以相同的速度向~\(f\)~接近。换句话说，在足够大的~n下，无论选择定义域中的哪个~x，\(f_n(x)\)~都会非常接近~\(f(x)\)
+  \end{itemize}
+\end{itemize}
+
+\subsection{幂级数（Potenzreihen）}\label{ux5e42ux7ea7ux6570potenzreihen}
+
+\begin{itemize}
+\item
+  \textbf{定义：}
+
+  \begin{itemize}
+  \item
+    \textbf{函数级数：}令
+    \(\emptyset \neq M \subseteq \mathbb{C}\)，函数级数，\((f_n): M \to \mathbb{K}\)
+    : \(\sum_{j=1}^\infty f_j := (S_n)_{n \in \mathbb{N}}\)
+  \item
+    \textbf{幂级数：}
+    \(f_n:\mathbb{K} \to \mathbb{K}\quad f_n(z) = a_n \in \mathbb{K}\quad\sum_{j=0}^\infty a_jz^j := \sum_{j = 0}^\infty f_j\)
+
+    \begin{itemize}
+    \item
+      j 从 0开始，意味着幂级数会有常数项**
+    \item
+      \(f_j(z) = a_jz^j\)，处理幂级数时候，必须从上下文中判定是数字还是函数
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{幂级数展开：} 当且仅当 \((S_n)\) \textbf{逐点收敛(p.w. gegen)}
+  于 \(f:M \to \mathbb{K}\)，函数 \(f\)
+  可以表示成为无穷级数的形式，意味着级数是函数 \(f\) 的幂级数展开。
+\item
+  \textbf{一致收敛准则（充分条件）}：如果有\(a_j \in \mathbb{R}^+\quad\sum_{j=1}^\infty a_j\)这个正项级数收敛，\(\forall z \in M\quad\forall j \in \mathbb{N}\quad|f_j(z)| \leq a_j\)
+  ---- \textbf{Weierstrass判别法或者M判别法} 函数序列
+  \((f_j)\)被一个收敛的正项级数 \((a_j)\)所控制
+\item
+  \textbf{一致收敛的连续保持性：} 如果函数\(f_j\)在
+  \(\zeta(\zeta \in M)\) 处连续(stetig)，并且\(\sum_{j = 1}^\infty f_j\)
+  一致收敛于 \(f\)，那么 \(f\) 在 zeta 处也保持连续
+\item
+  \textbf{Python示例：}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
+\CommentTok{\# 计算幂级数 e\^{}x = 1 + x + x\^{}2/2! + x\^{}3/3! + ...}
+\KeywordTok{def}\NormalTok{ exp\_series(x, terms}\OperatorTok{=}\DecValTok{10}\NormalTok{):}
+\NormalTok{    result }\OperatorTok{=}\NormalTok{ np.zeros\_like(x, dtype}\OperatorTok{=}\BuiltInTok{float}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ n }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(terms):}
+\NormalTok{        result }\OperatorTok{+=}\NormalTok{ x}\OperatorTok{**}\NormalTok{n }\OperatorTok{/}\NormalTok{ math.factorial(n)  }\CommentTok{\# 添加每一项}
+    \ControlFlowTok{return}\NormalTok{ result}
+
+\CommentTok{\# 使用示例}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ np.linspace(}\OperatorTok{{-}}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\NormalTok{plt.plot(x, np.exp(x), }\StringTok{\textquotesingle{}b{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}真实函数 e\^{}x\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.plot(x, exp\_series(x, }\DecValTok{5}\NormalTok{), }\StringTok{\textquotesingle{}r{-}{-}\textquotesingle{}}\NormalTok{, label}\OperatorTok{=}\StringTok{\textquotesingle{}5项近似\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.legend()}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}e\^{}x的幂级数展开\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \textbf{收敛半径：}
+
+  \begin{itemize}
+  \item
+    \textbf{定义：}对于每一个幂级数\(\sum_{j = 0}^\infty a_jz^j\)，存在一个\(r \in [0,+\infty)\)，称为该级数的收敛半径（KR），使得当\(z \in \mathbb{K}\)时候：
+
+    \begin{itemize}
+    \item
+      \(|z| < r\)：幂级数收敛
+    \item
+      \(|z| > r\)：幂级数发散
+    \item
+      \(|z| = r\)：幂级数收敛性需要逐点检查，可能某些点收敛，某些点发散
+    \end{itemize}
+  \item
+    \textbf{判定方法：}
+
+    \begin{itemize}
+    \item
+      \textbf{比值法}：\(\rho = lim_{j \to \infty} |\frac{a_{j+1}}{a_j}|\)
+      有极限，收敛半径等于 \(\frac{1}{\rho}\)
+    \item
+      \textbf{根值法}：\(L = lim_{j \to \infty}\sqrt[n]{a_n}\)
+      ，收敛半径等于 \(\frac{1}{L}\)
+    \end{itemize}
+  \end{itemize}
+
+  \textbf{例题：Bsp.
+  8.11，用根值法计算出收敛半径后，针对常数项的一些特殊取值，如0，1，-1等，转换为常见的调和级数，交错级数，p级数等判断敛散性，再把区间进行汇总给出什么条件下，什么区间收敛}
+\end{itemize}
+
+\subsection{指数函数（Exponentialfunktionen）}\label{ux6307ux6570ux51fdux6570exponentialfunktionen}
+
+\begin{itemize}
+\item
+  \textbf{定义}：
+
+  \begin{itemize}
+  \item
+    \(e = lim_{n \to \infty} (1 + \frac{1}{n})^n\)
+  \item
+    \(exp: \mathbb{C} \to \mathbb{C}, exp(z) := \sum_{n = 0}^\infty \frac{z^n}{n!} = 1+ z + \frac{z^2}{2!}\)
+  \end{itemize}
+\item
+  \textbf{常用极限}
+
+  \begin{itemize}
+  \item
+    \textbf{洛必达法则可以算}：
+
+    \begin{itemize}
+    \item
+      \(\lim_{z\to 0} \frac{e^z-1}{z} = 1, \quad (z \in M := \mathbb{C}\setminus\{0\})\)
+    \item
+      \(\lim_{x\to 0} \frac{\ln(1+x)}{x} = 1, \quad (x \in M := [-1,\infty)\setminus\{0\})\)
+    \item
+      \(\lim_{x\to 0} (1+\xi x)^{\frac{1}{x}} = e^\xi, \quad (x \in M := \{x \in \mathbb{R}: 1+\xi x > 0\}\setminus\{0\})\)
+    \end{itemize}
+  \item
+    \textbf{需要记忆：}
+
+    \begin{itemize}
+    \item
+      \(\lim_{x\to 0} \ln(1+\xi x)^{\frac{1}{x}} = \xi, \quad (x \in M := \{x \in \mathbb{R}: 1+\xi x > 0\}\setminus\{0\})\)
+    \item
+      \(\lim_{n\to\infty} (1+\frac{x}{n})^n = e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}\)
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\end{document}

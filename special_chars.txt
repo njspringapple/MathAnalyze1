@@ -1,0 +1,164 @@
+P95 - P113
+---
+documentclass: ctexart
+geometry:
+  - margin=0.3in
+mainfont: Noto Serif SC
+sansfont: Noto Sans SC
+monofont: Noto Sans Mono SC
+header-includes:
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[C]{\thepage}
+fontsize: 10pt
+---
+### 定义
+数列$S_n$满足$\forall n \in \mathbb{N} \quad S_n := \sum_{j=1}^n a_j$，被称为（无穷）级数
+$\sum_{j=1}^\infty a_j:= \sum_{j \in \mathbb{N}}a_j := (S_n)_{n \in \mathbb{N}}$
+- $a_j$项
+- $(S_n)_{n \in \mathbb{N}}$ ：部分和
+- $\sum_{j  = k}^\infty a_j$：$(S_n)_{n \in \mathbb{N}}$的余项
+**级数是个特殊的数列**
+#### 级数收敛
+- 级数收敛当且仅当：$lim_{n->\infty}S_n = s \in K$，可以记作：$\sum_{j = 1}^\infty a_j = s$ 
+- 同理，如果$lim_{n->\infty}S_n = \pm\infty \in K$
+#### 几何级数（Geometrische Reihe）
+$\forall |q| < 1\quad\sum_{j = 0}^\infty q^j = lim s_n = \frac{1}{1-q}$，标准几何级数收敛于$\frac{1}{1-q}$
+#### 调和级数（Harmonische Reihe）
+$\sum_{k=1}^\infty \frac{1}{k} = \infty$，调和级数是发散的
+#### 交错级数（Alternierend）
+$\sum_{j=1}^{\infty} a_j \text{ 其中 } a_j \in \mathbb{R} \text{ 称为交错级数当且仅当} \forall j \in \mathbb{N} , \text{sgn}(a_{j+1}) = -\text{sgn}(a_j) \neq 0.$
+**莱布尼茨判别法**：如果交错级数 $\sum_{n=1}^{\infty} (-1)^{n-1}a_n$ 满足以下条件：
+1. 对所有 $n$，有 $a_n > 0$
+2. 数列 ${a_n}$ 单调递减，即 $a_{n+1} \leq a_n$
+3. $\lim_{n \to \infty} a_n = 0$
+那么，该交错级数**收敛**。
+### 级数运算法则
+#### 线性性
+$\forall \lambda,\mu \in \mathbb{C} \sum_{j = 1}^\infty\quad (\lambda a_j +\mu b_j) = \lambda\sum_{j = 1}^\infty a_j + \mu\sum_{j=1}^\infty b_j$
+#### 单调性
+$\forall j \in \mathbb{N}, a_j, b_j \in \mathbb{R} \land a_j \leq b_j \Rightarrow \sum_{j=1}^{\infty} a_j \leq \sum_{j=1}^{\infty} b_j.$
+#### 余项趋于0
+$\lim_{n \to \infty} a_n = 0, \forall n \in \mathbb{N} \sum_{j=n+1}^{\infty} a_j \text{ konvergiert.}$  
+$\text{Mit } S := \sum_{j=1}^{\infty} a_j, r_n := \sum_{j=n+1}^{\infty} a_j \text{ gilt:}$
+$\forall n \in \mathbb{N} , S = s_n + r_n$
+$\lim_{n \to \infty} r_n = 0.$
+### 收敛性判据
+- **有界判别法：部分和有界，则级数收敛**
+	- $a_j \in \mathbb{R}^+_0, s_n := \sum_{j=1}^{n} a_j$  
+	- $\lim_{n \to \infty} s_n = \sup\{s_n : n \in \mathbb{N}\}$ ，收敛
+	- $\lim_{n \to \infty} s_n = \infty$，发散
+- **比较判别法：**
+$\exists k \in \mathbb{N} , \forall j \geq k , |a_j| \leq |b_j|, (a_j, b_j \in \mathbb{C}).$
+$(a) \sum_{j=1}^{\infty} |b_j| \text{ 收敛} \Rightarrow \sum_{j=1}^{\infty} a_j \text{ 收敛，且} \left|\sum_{j=k}^{\infty} a_j\right| \leq \sum_{j=k}^{\infty} |b_j|. \quad (7.78)$
+$(b) \sum a_j \text{ 发散} \Rightarrow \sum |b_j| \text{ 发散}.$
+- **莱布尼茨判别法：**
+$\sum_{j=1}^{\infty} a_j \text{是交错级数 }(|a_n|)_{n \in \mathbb{N}} \text{单调递减且} \lim_{n \to \infty} a_n = 0 \text{则} \sum_{j=1}^{\infty} a_j \text{收敛且}$：
+$\forall n \in \mathbb{N} , \exists_{0 < \theta_n < 1} , r_n := \sum_{j=n+1}^{\infty} a_j = \theta_n a_{n+1}$
+对于任意自然数n，存在一个介于0和1之间的数θₙ，使得第n项之后的所有项之和rₙ等于θₙ乘以aₙ₊₁。
+这个结论提供了交错级数余项的估计，表明余项的绝对值不会超过下一项的绝对值，这对于计算误差很有帮助。
+- **根值判别法（Wurzelkrit）**
+如果对于级数 $\sum_{j=1}^{\infty} a_j$，极限 $\lim_{j \to \infty} \sqrt[j]{|a_j|} = L$ 存在，那么：
+- 如果 $L < 1$，则级数绝对收敛
+- 如果 $L > 1$，则级数发散
+- 如果 $L = 1$，则判别法不能确定收敛性
+$\exists 0<q<1 \left(\sqrt[n]{|a_n|} \leq q < 1 \text{ 对几乎所有 } n \in \mathbb{N}\right)$
+$\Rightarrow \sum_{j=1}^{\infty} a_j \text{ 绝对收敛}$
+$\{n \in \mathbb{N} : \sqrt[n]{|a_n|} \geq 1\} = \infty \Rightarrow \sum_{j=1}^{\infty} a_j$
+- **比值判别法(Quot.krit)**：
+### 绝对收敛（Abs. Konv.）
+- **定义**：$\sum_{j=1}^{\infty} a_j \text{ 称为绝对收敛} :\Leftrightarrow \sum_{j=1}^{\infty} |a_j| \text{ 收敛}$
+$\sum_{j=1}^{\infty} a_j$ 绝对收敛 $\Rightarrow$ $\sum_{j=1}^{\infty} a_j$ 收敛，且满足三角不等式，即
+$\sum_{j=1}^{\infty} c_j \text{ 收敛} \wedge \forall j \in \mathbb{N}, |a_j| \leq c_j \Rightarrow \sum_{j=1}^{\infty} a_j \text{ 绝对收敛}$
+这表述了比较判别法的一个版本：如果有一个收敛的正项级数 $\sum_{j=1}^{\infty} c_j$，并且对于所有 $j \in \mathbb{N}$，$|a_j| \leq c_j$，那么级数 $\sum_{j=1}^{\infty} a_j$ 绝对收敛。
+### b进制表示法的实数
+解释：$\sum_{n=0}^{\infty} 2^{-(2n+1)} = \frac{2}{3}$（练习题）。
+这个级数是$\sum_{n=0}^{\infty} 2^{-(2n+1)}$，可以理解为：  
+$\frac{1}{2^1} + \frac{1}{2^3} + \frac{1}{2^5} + \frac{1}{2^7} + ...$
+**这是一个几何级数的变形。通过数学推导（可作为练习题），这个无穷级数的和等于$\frac{2}{3}$。**
+每个自然数n∈N恰好有2种十进制（即10进制）表示法。例如:  
+2 = 2.0 = 1.9 = 1 + $\sum_{n=1}^{\infty} 9 \cdot 10^{-n}$ (7.71)  
+= 1 + 9 · $\left(\frac{1}{1 - \frac{1}{10}} - 1\right)$  
+= 1 + 9 · $\frac{1}{9}$. (7.95)
+## 逐点收敛与一致收敛
+- **背景举例：**
+	- 考虑在定义域$[0,1]$上的函数序列$(f_n)$，其中每个函数$f_n:[0,1] \to \mathbb{R}$的定义为：$f_n(x) = x^n$
+	- n趋近于无穷时候，观察随着n的增加，函数$f_n(x)$ 在整个定义域$[0,1]$内，逐渐趋近于0，表达为：
+			$0 \leq x \leq 1 \quad lim_{n \to \infty}f_n(x) = lim_{n \to \infty}x^n = 0$
+	- **因此，极限函数 $f$ 可以定义 为：**
+		$$f(x) = \begin{cases} 
+		0 & \text{if } 0 \leq x < 1 \\
+		1 & \text{if } x = 1
+		\end{cases}$$
+	- **简单解释**：逐点收敛意味着在定义域内的每一个固定点上，随着 n增大，$f_n$​ 的值逐渐接近 $f$ 的值。但这种接近可能**在不同点上的速度非常不同**
+	
+- **定义：**
+	-  **逐点收敛：** 函数序列$(f_n)$逐点收敛于$ $f: M \to \mathbb{K}$ 当且仅当 $lim_{n \to \infty}f_n(z) = f(z)$，也可以写为当且仅当：
+	$$
+	\forall z \in M\quad\forall \epsilon \in \mathbb{R}^+\quad\exists N \in \mathbb{N}\quad\forall n > N\quad|f_n(z) - f(z)| < \epsilon
+	$$
+	- **一致收敛：** 函数序列$(f_n)$一致（**gleichmäßig**）收敛于$f: M \to \mathbb{K}$ 当且仅当：
+	$$
+	\forall \epsilon \in \mathbb{R}^+\quad\exists N \in \mathbb{N}\quad\forall n > N\quad\forall z \in M\quad|f_n(z) - f(z)| < \epsilon
+	$$
+	- **简单解释**：一致收敛意味着整个定义域内所有点上，函数序列 $f_n$​ 同时且以相同的速度向 $f$ 接近。换句话说，在足够大的 n下，无论选择定义域中的哪个 x，$f_n(x)$ 都会非常接近 $f(x)$
+## 幂级数（Potenzreihen）
+- **定义：**
+	- **函数级数：**令 $\emptyset \neq M \subseteq \mathbb{C}$，函数级数，$(f_n): M \to \mathbb{K}$ : $\sum_{j=1}^\infty f_j := (S_n)_{n \in \mathbb{N}}$
+	- **幂级数：** $f_n:\mathbb{K} \to \mathbb{K}\quad f_n(z) = a_n \in \mathbb{K}\quad\sum_{j=0}^\infty a_jz^j := \sum_{j = 0}^\infty f_j$  
+	
+		- j 从 0开始，意味着幂级数会有常数项**
+		- $f_j(z) = a_jz^j$，处理幂级数时候，必须从上下文中判定是数字还是函数
+	
+- **幂级数展开：** 当且仅当 $(S_n)$ **逐点收敛(p.w. gegen)** 于 $f:M \to \mathbb{K}$，函数 $f$ 可以表示成为无穷级数的形式，意味着级数是函数 $f$  的幂级数展开。
+- **一致收敛准则（充分条件）**：如果有$a_j \in \mathbb{R}^+\quad\sum_{j=1}^\infty a_j$这个正项级数收敛，$\forall z \in M\quad\forall j \in \mathbb{N}\quad|f_j(z)| \leq a_j$  ---- **Weierstrass判别法或者M判别法**
+	函数序列 $(f_j)$被一个收敛的正项级数 $(a_j)$所控制
+- **一致收敛的连续保持性：** 如果函数$f_j$在 $\zeta(\zeta \in M)$ 处连续(stetig)，并且$\sum_{j = 1}^\infty f_j$ 一致收敛于 $f$，那么 $f$ 在 zeta 处也保持连续
+ - **Python示例：**
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+# 计算幂级数 e^x = 1 + x + x^2/2! + x^3/3! + ...
+def exp_series(x, terms=10):
+    result = np.zeros_like(x, dtype=float)
+    for n in range(terms):
+        result += x**n / math.factorial(n)  # 添加每一项
+    return result
+# 使用示例
+x = np.linspace(-2, 2, 100)
+plt.plot(x, np.exp(x), 'b-', label='真实函数 e^x')
+plt.plot(x, exp_series(x, 5), 'r--', label='5项近似')
+plt.legend()
+plt.title('e^x的幂级数展开')
+plt.show()
+```
+- **收敛半径：**
+	- **定义：**对于每一个幂级数$\sum_{j = 0}^\infty a_jz^j$，存在一个$r \in [0,+\infty)$，称为该级数的收敛半径（KR），使得当$z \in \mathbb{K}$时候：
+	
+		- $|z| < r$：幂级数收敛
+		- $|z| > r$：幂级数发散
+		- $|z| = r$：幂级数收敛性需要逐点检查，可能某些点收敛，某些点发散
+	
+	- **判定方法：** 
+		- **比值法**：$\rho = lim_{j \to \infty} |\frac{a_{j+1}}{a_j}|$ 有极限，收敛半径等于 $\frac{1}{\rho}$
+		- **根值法**：$L = lim_{j \to \infty}\sqrt[n]{a_n}$ ，收敛半径等于 $\frac{1}{L}$
+	**例题：Bsp. 8.11，用根值法计算出收敛半径后，针对常数项的一些特殊取值，如0，1，-1等，转换为常见的调和级数，交错级数，p级数等判断敛散性，再把区间进行汇总给出什么条件下，什么区间收敛**
+## 指数函数（Exponentialfunktionen）
+- **定义**：
+	- $e = lim_{n \to \infty} (1 + \frac{1}{n})^n$
+	
+	- $exp: \mathbb{C} \to \mathbb{C}, exp(z) := \sum_{n = 0}^\infty \frac{z^n}{n!} = 1+ z + \frac{z^2}{2!}$
+- **常用极限**
+	- **洛必达法则可以算**：
+	
+		- $\lim_{z\to 0} \frac{e^z-1}{z} = 1, \quad (z \in M := \mathbb{C}\setminus\{0\})$
+	
+		- $\lim_{x\to 0} \frac{\ln(1+x)}{x} = 1, \quad (x \in M := [-1,\infty)\setminus\{0\})$
+	
+		- $\lim_{x\to 0} (1+\xi x)^{\frac{1}{x}} = e^\xi, \quad (x \in M := \{x \in \mathbb{R}: 1+\xi x > 0\}\setminus\{0\})$
+	
+	- **需要记忆：**
+	
+		- $\lim_{x\to 0} \ln(1+\xi x)^{\frac{1}{x}} = \xi, \quad (x \in M := \{x \in \mathbb{R}: 1+\xi x > 0\}\setminus\{0\})$
+		
+		- $\lim_{n\to\infty} (1+\frac{x}{n})^n = e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}$
